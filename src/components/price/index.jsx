@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Price = (props) => {
 
@@ -19,5 +20,9 @@ const Price = (props) => {
     )
 }
 
+Price.propTypes = {
+    value: PropTypes.number,
+    unit: PropTypes.string
+}
 Price.displayName = 'Price';
 export default Price;

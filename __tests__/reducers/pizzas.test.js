@@ -1,5 +1,7 @@
-import reducer from './pizzas';
-import {PIZZAS_FETCHED} from "../actions";
+import reducer from '../../src/reducers/pizzas';
+import {
+    PIZZAS_FETCHED
+} from '../../src/constants'
 
 
 describe('Pizza Reducer', () => {

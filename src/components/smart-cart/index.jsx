@@ -16,7 +16,7 @@ const SmartCart = () => {
             <ListGroup as="ul">
                 {cart.items.map(item => {
                     return (
-                        <ListGroup.Item as="li" className="d-flex justify-content-between lh-condensed">
+                        <ListGroup.Item key={item.id} as="li" className="d-flex justify-content-between lh-condensed">
                             <div>
                                 <h6 className="my-0">{item.name}</h6>
                             </div>

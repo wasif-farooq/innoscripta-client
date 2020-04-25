@@ -1,5 +1,6 @@
 import actions from "../actions";
 import service from '../services/cart';
+import map from "./cart/map";
 
 const checkout = store => next => action => {
 
@@ -10,9 +11,9 @@ const checkout = store => next => action => {
         actions.general.loading.toggle.dispatch()
 
         service.checkout(state.cart.id)
+            .then(async data => map(state, data))
+            .then(async data => actions.cart.updated.dispatch(data))
             .then(async () => actions.cart.loading.toggle.dispatch())
-            .then(async () => localStorage.clear())
-            .then(async () => window.location.replace('/thank-you'))
             .catch(async err => err)
             .then(err => {
                 console.log(err)

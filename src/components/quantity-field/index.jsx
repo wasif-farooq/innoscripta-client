@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import {Button, Form, InputGroup, FormControl} from "react-bootstrap";
 
 
@@ -51,5 +52,9 @@ const QuantityField = (props) => {
     )
 }
 
+QuantityField.propTypes = {
+    value: PropTypes.number,
+    onChange: PropTypes.func
+}
 QuantityField.displayName = 'QuantityField';
 export default QuantityField;

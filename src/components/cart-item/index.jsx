@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, ListGroup, Row, Col } from "react-bootstrap";
 import QuantityField from '../quantity-field';
 import Price from '../price';
@@ -23,6 +24,15 @@ const Item = (props) => {
             <td className="text-center"><Button size="sm" variant="danger" onClick={onRemove(id)}>x</Button></td>
         </tr>
     )
+}
+
+Item.propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string,
+    quantity: PropTypes.number,
+    price: PropTypes.number,
+    onRemove: PropTypes.func,
+    onUpdateQuantity: PropTypes.func
 }
 
 Item.displayName = 'Item';

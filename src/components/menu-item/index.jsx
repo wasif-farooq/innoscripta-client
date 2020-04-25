@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Button, Card } from "react-bootstrap";
 import Price from '../price'
 
@@ -38,5 +39,13 @@ const Item = (props) => {
     )
 }
 
+Item.propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string,
+    thumbnail: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.number,
+    onAdd: PropTypes.func
+}
 Item.displayName = 'Item';
 export default Item;

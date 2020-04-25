@@ -2,7 +2,7 @@
   "setupFilesAfterEnv": [
     "<rootDir>__tests__/setup/setup.js"
   ],
-  "collectCoverage": true,
+  "collectCoverage": false,
   "collectCoverageFrom": [
     "src/**/*.jsx",
     "!src/**/index.jsx",

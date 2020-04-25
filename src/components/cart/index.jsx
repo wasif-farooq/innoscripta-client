@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import Item from '../cart-item';
 import { useSelector } from "react-redux";
@@ -106,6 +107,11 @@ const Cart = (props) => {
         </Modal>
     )
 
+}
+
+
+Cart.propTypes = {
+    history: PropTypes.object.isRequired
 }
 
 Cart.displayName = 'Cart';

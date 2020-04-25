@@ -1,5 +1,12 @@
-import reducer from './cart';
-import {CART_HIDE_LOADING, CART_SHOW_LOADING, CART_UPDATED, CLEAR_CART, HIDE_CART, SHOW_CART} from "../actions";
+import reducer from '../../src/reducers/cart';
+import {
+    CART_HIDE_LOADING,
+    CART_SHOW_LOADING,
+    CART_UPDATED,
+    CLEAR_CART,
+    HIDE_CART,
+    SHOW_CART
+} from '../../src/constants'
 
 describe('Cart Reducer', () => {
 
@@ -15,7 +22,7 @@ describe('Cart Reducer', () => {
     }
 
     it('should return default state', () => {
-        const state = reducer(init, { type: '' });
+        const state = reducer(init, {type: ''});
 
         expect(state.loading).toEqual(false);
         expect(state.show).toEqual(false);
@@ -30,7 +37,7 @@ describe('Cart Reducer', () => {
 
     it('should reset cart state', () => {
         const state = reducer(init, {
-            type:  CLEAR_CART
+            type: CLEAR_CART
         });
 
         expect(state.loading).toEqual(false);
@@ -45,9 +52,7 @@ describe('Cart Reducer', () => {
     });
 
     it('should set loading state', () => {
-        const payload = {
-
-        }
+        const payload = {}
         const state = reducer(init, {
             type: CART_SHOW_LOADING,
             payload
@@ -57,9 +62,7 @@ describe('Cart Reducer', () => {
     });
 
     it('should reset loading state', () => {
-        const payload = {
-
-        }
+        const payload = {}
         const state = reducer(init, {
             type: CART_HIDE_LOADING,
             payload
@@ -69,9 +72,7 @@ describe('Cart Reducer', () => {
     });
 
     it('should set show  state', () => {
-        const payload = {
-
-        }
+        const payload = {}
         const state = reducer(init, {
             type: SHOW_CART,
             payload
@@ -81,9 +82,7 @@ describe('Cart Reducer', () => {
     });
 
     it('should reset show  state', () => {
-        const payload = {
-
-        }
+        const payload = {}
         const state = reducer(init, {
             type: HIDE_CART,
             payload
@@ -109,7 +108,7 @@ describe('Cart Reducer', () => {
         }
 
         const state = reducer(init, {
-            type:  CART_UPDATED,
+            type: CART_UPDATED,
             payload
         });
 

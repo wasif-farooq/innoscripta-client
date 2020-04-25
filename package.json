@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-app-env start --env-file='.env.local'",
     "build": "react-app-env build --env-file='.env.production'",
-    "test": "react-app-env test --env-file='.env.local'",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,7 +41,14 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.0",
     "axios-mock-adapter": "^1.18.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
+    "jest": "24.9.0",
+    "jest-react-hooks-shallow": "^1.2.0",
     "react-app-env": "^1.2.3",
     "redux-mock-store": "^1.5.4"
   }

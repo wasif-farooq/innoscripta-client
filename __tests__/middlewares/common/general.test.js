@@ -1,5 +1,9 @@
-import general from './general';
-import {HIDE_LOADING, SHOW_LOADING, TOGGLE_LOADING} from "../../actions";
+import general from '../../../src/middlewares/common/general'
+import {
+    HIDE_LOADING,
+    SHOW_LOADING,
+    TOGGLE_LOADING
+} from '../../../src/constants';
 
 describe('Genral MiddleWare', () => {
 

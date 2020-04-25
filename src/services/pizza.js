@@ -11,7 +11,6 @@ class PizzaService {
         }
 
         this.uri = config.api.url + '/pizzas';
-
         return PizzaService.instance;
     }
 

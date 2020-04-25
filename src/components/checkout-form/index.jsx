@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
     Row,
     Col,
@@ -204,5 +205,8 @@ const CheckoutForm = (props) => {
     )
 }
 
+CheckoutForm.propType = {
+    onCheckout: PropTypes.func
+};
 CheckoutForm.displayName = 'CheckoutForm';
 export default CheckoutForm;

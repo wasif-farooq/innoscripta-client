@@ -1,5 +1,10 @@
-import reducer from './general';
-import {HIDE_LOADING, HIDE_NOTIFICATION, SHOW_LOADING, SHOW_NOTIFICATION} from "../actions";
+import reducer from '../../src/reducers/general';
+import {
+    HIDE_LOADING,
+    HIDE_NOTIFICATION,
+    SHOW_LOADING,
+    SHOW_NOTIFICATION
+} from '../../src/constants'
 
 describe('General Reducer', () => {
 
