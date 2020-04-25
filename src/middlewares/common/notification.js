@@ -8,13 +8,11 @@ const noticiation = store => next => action => {
 
         if (state.general.notification.type) {
             actions.general.notification.hide.dispatch();
-        }
-
-        if (!state.general.notification.type) {
-            actions.general.notification.show.dispatch();
+        } else {
+            actions.general.notification.show.dispatch(payload);
             setTimeout(() => {
                 actions.general.notification.hide.dispatch();
-            }, 1000)
+            }, 2000)
         }
 
     }
