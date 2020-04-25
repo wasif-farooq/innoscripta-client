@@ -25,7 +25,7 @@ const Menu = () => {
             <Row>
                 {pizzas.map((item) => {
                     return (
-                        <Col sm={4} key={item.id}>
+                        <Col sm={3} key={item.id}>
                             <Item {...item} onAdd={onAdd} />
                         </Col>
                     )

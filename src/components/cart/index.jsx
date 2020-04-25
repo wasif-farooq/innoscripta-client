@@ -6,7 +6,9 @@ import {
     Modal,
     Button,
     Badge,
-    ListGroup, Col, Row, Card
+    ListGroup,
+    Card,
+    Table
 } from "react-bootstrap";
 import actions from "../../actions";
 import Price from '../price';
@@ -53,37 +55,23 @@ const Cart = (props) => {
         >
             <Header closeButton>
                 <Title id="contained-modal-title-vcenter">
-                    <span className="text-muted">Your cart</span>
+                    <span className="text-muted mr-1">Your Cart</span>
                     <Badge variant="secondary" pill>{cart.items.length}</Badge>
                 </Title>
 
             </Header>
             <Body>
-                <ListGroup>
-                    <ListGroup.Item>
-                        <Row>
-                            <Col sm={4}>
-                                <h6 className="my-0">Name</h6>
-                            </Col>
-                            <Col sm={2}>
-                                <h6 className="text-muted">Quantity</h6>
-                            </Col>
-                            <Col sm={1}>
-                                <h6 className="text-muted"> X </h6>
-                            </Col>
-                            <Col sm={1}>
-                                <h6 className="text-muted">Price</h6>
-                            </Col>
-                            <Col sm={2}>
-                                <h6 className="text-muted">Sub Total</h6>
-                            </Col>
-                            <Col sm={2}>
-                                &nbsp;
-                            </Col>
-                        </Row>
-                    </ListGroup.Item>
-                </ListGroup>
-                <ListGroup>
+                <Table striped bordered hover size="sm">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Price</th>
+                            <th className="text-center" />
+                        </tr>
+                    </thead>
+                    <tbody>
                     {cart.items.map((item) => {
                         return (
                             <Item
@@ -94,19 +82,20 @@ const Cart = (props) => {
                             />
                         )
                     })}
-                </ListGroup>
+                    </tbody>
+                </Table>
             </Body>
             <Footer>
                 <Card style={{ width: '18rem' }}>
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <h5>Sub Total: <Price value={cart.sub_total} /></h5>
+                            <label className="mb-0 d-block">Sub Total: <Price className="float-right" value={cart.sub_total} /></label>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <h5>Discount: <Price value={cart.discount} /></h5>
+                            <label className="mb-0 d-block">Discount: <Price className="float-right" value={cart.discount} /></label>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <h5>Total: <Price value={cart.sub_total} /></h5>
+                            <label className="mb-0 d-block">Total: <Price className="float-right" value={cart.sub_total} /></label>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card>

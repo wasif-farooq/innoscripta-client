@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Form} from "react-bootstrap";
+import {Button, Form, InputGroup, FormControl} from "react-bootstrap";
 
 
 const QuantityField = (props) => {
@@ -39,19 +39,15 @@ const QuantityField = (props) => {
 
 
     return (
-        <Group clas>
-            <span className="input-group-btn">
-                <Button onClick={decrement}>
-                    <span className="glyphicon glyphicon-minus">-</span>
-                </Button>
-            </span>
-            <Control type="email" placeholder="0" value={quantity} size="sm" onChange={onUpdateQuantity} />
-            <span className="input-group-btn">
-                <Button onClick={increment}>
-                    <span className="glyphicon glyphicon-plus">+</span>
-                </Button>
-            </span>
-        </Group>
+        <InputGroup size="sm" style={{width: '100px'}}>
+            <InputGroup.Prepend>
+                <Button variant="outline-secondary" onClick={decrement}>-</Button>
+            </InputGroup.Prepend>
+            <FormControl aria-describedby="basic-addon1" value={quantity} onChange={onUpdateQuantity} />
+            <InputGroup.Append>
+                <Button variant="outline-secondary" onClick={increment}>+</Button>
+            </InputGroup.Append>
+        </InputGroup>
     )
 }
 

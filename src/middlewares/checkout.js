@@ -4,7 +4,7 @@ import service from '../services/cart';
 const checkout = store => next => action => {
 
     const state = store.getState();
-    const { type, payload } = action;
+    const { type } = action;
 
     if (type === actions.cart.checkout.type) {
         actions.general.loading.toggle.dispatch()

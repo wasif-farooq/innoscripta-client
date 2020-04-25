@@ -15,29 +15,13 @@ const Item = (props) => {
     } = props
 
     return (
-        <ListGroup.Item>
-            <hr />
-            <Row>
-                <Col sm={4}>
-                    <h6 className="my-0">{name}</h6>
-                </Col>
-                <Col sm={2}>
-                    <QuantityField value={quantity} onChange={onUpdateQuantity} />
-                </Col>
-                <Col sm={1}>
-                    <span className="text-muted"> X </span>
-                </Col>
-                <Col sm={1}>
-                    <Price className="text-muted" value={price} />
-                </Col>
-                <Col sm={2}>
-                    <Price className="text-muted" value={quantity * price} />
-                </Col>
-                <Col sm={2}>
-                    <Button variant="dark" onClick={onRemove(id)}>Remove</Button>
-                </Col>
-            </Row>
-        </ListGroup.Item>
+        <tr>
+            <td>{name}</td>
+            <td><QuantityField value={quantity} onChange={onUpdateQuantity} /></td>
+            <td><Price className="text-muted" value={price} /></td>
+            <td><Price className="text-muted" value={quantity * price} /></td>
+            <td className="text-center"><Button size="sm" variant="danger" onClick={onRemove(id)}>x</Button></td>
+        </tr>
     )
 }
 

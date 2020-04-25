@@ -1,0 +1,24 @@
+.card-img, .card-img-top {
+    padding: 0;
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    margin: 20px auto 0 auto;
+    border: 10px solid rgba(0,0,0,0.1);
+}
+
+.card-title.h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 0 20px 0;
+    font-size: 1rem;
+    margin: 0;
+    resize: horizontal;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 0.8rem;
+    font-style: italic;
+}

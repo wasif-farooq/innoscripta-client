@@ -14,22 +14,22 @@ const TopNav = () => {
     }
 
     return (
-        <Navbar bg="dark" variant="dark" className="justify-content-end">
+        <Navbar bg="dark" variant="dark" className="justify-content-end mb-4">
             <Container>
                 <Brand href="#home">Innoscripta</Brand>
                 <Toggle aria-controls="basic-navbar-nav" />
                 <Collapse id="justify-content-end">
-                    <Nav className="mr-auto" />
-                    <Nav>
-                        <Link as={Link} to="/">Menu</Link>
-                        <Link as={Link} to="/checkout">Checkout</Link>
+                    <Nav className="ml-auto">
+                        <Nav.Link as={Link} to="/">Menu</Nav.Link>
+                        <Nav.Link as={Link} to="/checkout">Checkout</Nav.Link>
+                        {cart.items.length > 0 &&
+                        <Button variant="outline-success" onClick={toggle}>
+                            <span className="mr-1">Cart</span>
+                            <Badge variant="success" pill>{cart.items.length}</Badge>
+                        </Button>
+                        }
                     </Nav>
-                    {cart.items.length > 0 &&
-                    <Button variant="outline-success" onClick={toggle}>
-                        <span className="text-muted">Cart</span>
-                        <Badge variant="secondary" pill>{cart.items.length}</Badge>
-                    </Button>
-                    }
+
                 </Collapse>
             </Container>
         </Navbar>

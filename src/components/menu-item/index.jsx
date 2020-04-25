@@ -14,22 +14,20 @@ const Item = (props) => {
         onAdd
     } = props
 
+    let descriptions = description.substr(0, 100);
     return (
-        <Card style={{ width: '18rem' }}>
-            <Img variant="top" src={thumbnail} width={300}  />
+        <Card className="shadow shadow-lg mb-2">
+            <Img variant="top" src={thumbnail}  />
             <Body>
             <Title>{name}</Title>
-            <Text>
-                {description}
+            <Text className="text-secondary">
+                {descriptions}
             </Text>
-            <p className="mb-2">
-                Price:  <Price value={price} unit='usd' /> in USD, <Price value={price} unit='eur' /> in EUR
-            </p>
-            <Button
+            <Button size="sm"
                 variant="dark"
                 onClick={onAdd(id)}
                 block
-            >Add to Cart</Button>
+            ><Price value={price} unit='usd' /> | Add to Cart</Button>
             </Body>
         </Card>
     )
