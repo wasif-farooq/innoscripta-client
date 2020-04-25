@@ -61,7 +61,7 @@ class CartService {
 
     checkout = async (id) => {
         try {
-            const response = await http.delete(`${this.uri}/${id}`);
+            const response = await http.post(`${this.uri}/${id}/checkout`);
             return response.data;
         } catch (error) {
             throw (error.response || error.message);

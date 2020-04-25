@@ -14,20 +14,25 @@ const Item = (props) => {
         onAdd
     } = props
 
-    let descriptions = description.substr(0, 100);
     return (
         <Card className="shadow shadow-lg mb-2">
             <Img variant="top" src={thumbnail}  />
             <Body>
-            <Title>{name}</Title>
-            <Text className="text-secondary">
-                {descriptions}
-            </Text>
-            <Button size="sm"
-                variant="dark"
-                onClick={onAdd(id)}
-                block
-            ><Price value={price} unit='usd' /> | Add to Cart</Button>
+                <Title>{name}</Title>
+                <Text className="text-secondary">
+                    {description}
+                </Text>
+                <Button size="sm"
+                    variant="dark"
+                    onClick={onAdd(id)}
+                    block
+                >
+                    <Price value={price} unit='usd' />
+                    <span className="ml-1">/</span>
+                    <Price className="ml-1" value={price} unit='eur' />
+                    <span className="ml-1">|</span>
+                    <span className="ml-1">Add to Cart</span>
+                </Button>
             </Body>
         </Card>
     )

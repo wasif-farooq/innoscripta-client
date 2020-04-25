@@ -61,7 +61,7 @@ const Cart = (props) => {
 
             </Header>
             <Body>
-                <Table striped bordered hover size="sm">
+                <Table striped bordered hover size="sm" className="align-middle">
                     <thead>
                         <tr>
                             <th>Name</th>

@@ -9,15 +9,13 @@ const checkout = store => next => action => {
     if (type === actions.cart.checkout.type) {
         actions.general.loading.toggle.dispatch()
 
-        service.checkout(state.cart.it)
+        service.checkout(state.cart.id)
             .then(async () => actions.cart.loading.toggle.dispatch())
-            .then(async () => actions.general.notification.toggle.dispatch({
-                type: 'success',
-                message: 'Item Order placed successfully'
-            }))
             .then(async () => localStorage.clear())
+            .then(async () => window.location.replace('/thank-you'))
             .catch(async err => err)
             .then(err => {
+                console.log(err)
                 if (err) {
                     actions.cart.loading.toggle.dispatch();
                     actions.general.notification.toggle.dispatch({
