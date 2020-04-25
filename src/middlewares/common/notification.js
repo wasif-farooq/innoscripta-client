@@ -1,23 +1,19 @@
-import {
-    TOGGLE_NOTIFICATION,
-    SHOW_NOTIFICATION,
-    HIDE_NOTIFICATION
-} from "../../actions";
+import actions from "../../actions";
 
 const noticiation = store => next => action => {
     const state = store.getState();
     const { type, payload } = action;
 
-    if (type === TOGGLE_NOTIFICATION) {
+    if (type === actions.general.notification.toggle.type) {
 
         if (state.general.notification.type) {
-            store.dispatch({type: HIDE_NOTIFICATION})
+            actions.general.notification.hide.dispatch();
         }
 
         if (!state.general.notification.type) {
-            store.dispatch({type: SHOW_NOTIFICATION, payload})
+            actions.general.notification.show.dispatch();
             setTimeout(() => {
-                store.dispatch({type: HIDE_NOTIFICATION})
+                actions.general.notification.hide.dispatch();
             }, 1000)
         }
 

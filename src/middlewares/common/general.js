@@ -1,16 +1,12 @@
-import {
-    SHOW_LOADING,
-    HIDE_LOADING,
-    TOGGLE_LOADING
-} from '../../actions';
+import actions from '../../actions';
 
 const general = store => next => action => {
 
     const loading = store.getState().general.loading;
-    if (action.type === TOGGLE_LOADING) {
+    if (action.type === actions.general.loading.toggle.type) {
         loading ?
-            store.dispatch({type: HIDE_LOADING}):
-            store.dispatch({type: SHOW_LOADING});
+            actions.general.loading.hide.dispatch():
+            actions.general.loading.show.dispatch();
     }
 
     return next(action);

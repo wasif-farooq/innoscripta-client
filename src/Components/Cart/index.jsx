@@ -1,18 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Item from './Item';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
     Modal,
     Button,
     Badge,
     ListGroup, Col, Row, Card
 } from "react-bootstrap";
-import {
-    TOGGLE_CART,
-    UPDATE_CART_ITEM_QTY,
-    CART_REMOVE_ITEM
-} from "../../actions";
+import actions from "../../actions";
 import Price from '../Price';
 
 const Cart = (props) => {
@@ -25,7 +21,6 @@ const Cart = (props) => {
     } = Modal
 
     const cart = useSelector(state => state.cart);
-    const dispath = useDispatch();
 
     const checkout = (e) => {
         onHide(e);
@@ -33,28 +28,19 @@ const Cart = (props) => {
     }
 
     const onHide = e => {
-        dispath({
-            type: TOGGLE_CART
-        });
+        actions.cart.toggle.dispatch();
     }
 
     const onUpdateQuantity = id => quantity => {
-        dispath({
-            type: UPDATE_CART_ITEM_QTY,
-            payload: {
-                id,
-                quantity
-            }
+        actions.cart.item.quantity.update.dispatch({
+            id,
+            quantity
         });
     }
 
-    const onRemove = id => quantity => {
-        dispath({
-            type: CART_REMOVE_ITEM,
-            payload: {
-                id,
-                quantity
-            }
+    const onRemove = id => () => {
+        actions.cart.item.remove.dispatch({
+            id
         });
     }
 

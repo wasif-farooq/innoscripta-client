@@ -2,21 +2,18 @@ import React, { Fragment } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CheckoutForm from './Form';
 import SmartCart from '../SmartCart';
-import { DO_CHECKOUT } from "../../actions";
-import { useDispatch, useSelector } from "react-redux";
+import actions from "../../actions";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
 
     const cart = useSelector(state => state.cart);
-    const dispatch = useDispatch();
+
     const doCheckout = values => {
-        dispatch({
-            type: DO_CHECKOUT,
-            payload: {
-                id: cart.id,
-                values
-            }
-        })
+        actions.cart.checkout.dispatch({
+            id: cart.id,
+            values
+        });
     }
 
     if (!cart.id || cart.items.length <= 0) {

@@ -1,20 +1,14 @@
-import {
-    FETCH_PIZZAS,
-    PIZZAS_FETCHED
-} from '../actions';
+import actions from '../actions';
 import config from '../config';
 import axios from 'axios';
 
 const pizzas = store => next => action => {
 
-    if (action.type === FETCH_PIZZAS) {
+    if (action.type === actions.pizza.get.all.start.type) {
 
         axios.get(config.api.url + '/pizzas')
             .then(response => {
-                store.dispatch({
-                    type: PIZZAS_FETCHED,
-                    payload: response.data
-                })
+                actions.pizza.get.all.end.dispatch(response.data)
             })
     }
 

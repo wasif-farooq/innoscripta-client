@@ -1,27 +1,21 @@
 import React, { useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Item from './Item';
-import { useSelector, useDispatch } from "react-redux";
-import { FETCH_PIZZAS, ADD_TO_CART } from '../../actions';
+import { useSelector } from "react-redux";
+import actions from '../../actions';
 
 const PizzaGrid = () => {
 
     const pizzas = useSelector(state => state.pizzas.list)
-    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({
-            type: FETCH_PIZZAS
-        });
-    }, [dispatch])
+        actions.pizza.get.all.start.dispatch();
+    }, [])
 
     const onAdd = id => e => {
-        dispatch({
-            type: ADD_TO_CART,
-            payload: {
-                product_id: id,
-                quantity: 1
-            }
+        actions.cart.item.add.dispatch({
+            product_id: id,
+            quantity: 1
         });
     }
 

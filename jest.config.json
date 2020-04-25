@@ -1,0 +1,27 @@
+{
+  "setupFilesAfterEnv": [
+    "<rootDir>__tests__/setup/setup.js"
+  ],
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.jsx",
+    "!src/**/index.jsx",
+    "!src/**/proptypes.jsx"
+  ],
+  "verbose": false,
+  "testPathIgnorePatterns": [
+    "<rootDir>/__tests__/setup/",
+    "<rootDir>/cli"
+  ],
+  "moduleNameMapper": {
+    "elements(.*)$": "<rootDir>/src/$1"
+  },
+  "coverageThreshold": {
+    "global": {
+      "branches": 80,
+      "functions": 80,
+      "lines": 80,
+      "statements": 80
+    }
+  }
+}

@@ -1,16 +1,12 @@
-import {
-    CART_TOGGLE_LOADING,
-    CART_SHOW_LOADING,
-    CART_HIDE_LOADING,
-} from "../../actions";
+import actions from "../../actions";
 
 const loading = store => next => action => {
 
     const state = store.getState();
-    if (action.type === CART_TOGGLE_LOADING) {
+    if (action.type === actions.cart.loading.toggle.type) {
         state.cart.loading ?
-            store.dispatch({type: CART_HIDE_LOADING}):
-            store.dispatch({type: CART_SHOW_LOADING})
+            actions.cart.loading.hide.dispatch():
+            actions.cart.loading.show.dispatch();
     }
 
     return next(action);

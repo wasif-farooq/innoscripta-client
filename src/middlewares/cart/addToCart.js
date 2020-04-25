@@ -1,8 +1,4 @@
-import {
-    ADD_TO_CART,
-    CART_UPDATED,
-    CART_TOGGLE_LOADING, TOGGLE_NOTIFICATION
-} from "../../actions";
+import actions from "../../actions";
 import axios from "axios";
 import config from "../../config";
 import map from './map';
@@ -22,36 +18,26 @@ const getCart = (state, config) => {
 const addToCart = store => next => action => {
 
     const state = store.getState();
-    if (action.type === ADD_TO_CART) {
-        store.dispatch({type: CART_TOGGLE_LOADING});
+    if (action.type === actions.cart.item.add.type) {
+        actions.cart.loading.toggle.dispatch();
 
         const cart = getCart(state, config);
-
         cart.then(id => {
             axios.post(config.api.url + '/cart/' + id + '/items', action.payload)
                 .then(response => {
                     response.data.items = map(state, response.data.items);
-                    store.dispatch({
-                        type: CART_UPDATED,
-                        payload: response.data
-                    });
-                    store.dispatch({type: CART_TOGGLE_LOADING});
-                    store.dispatch({
-                        type: TOGGLE_NOTIFICATION,
-                        payload: {
-                            type: 'success',
-                            message: 'Item Added Succesfully'
-                        }
+                    actions.cart.updated.dispatch(response.data);
+                    actions.cart.loading.toggle.dispatch();
+                    actions.general.notification.toggle.dispatch({
+                        type: 'success',
+                        message: 'Item Added Succesfully'
                     });
                 })
                 .catch(err => {
-                    store.dispatch({type: CART_TOGGLE_LOADING});
-                    store.dispatch({
-                        type: TOGGLE_NOTIFICATION,
-                        payload: {
-                            type: 'warning',
-                            message: 'There is some error in process please try again later'
-                        }
+                    actions.cart.loading.toggle.dispatch();
+                    actions.general.notification.toggle.dispatch({
+                        type: 'warning',
+                        message: 'There is some error in process please try again later'
                     });
                 });
         });

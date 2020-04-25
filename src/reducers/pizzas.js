@@ -1,15 +1,12 @@
-import {
-    PIZZAS_FETCHED
-} from '../actions';
+import actions from '../actions';
 
 const init = {
     list: []
 }
 
 const pizzas = (state = init, action) => {
-    console.log("action : ", action)
     switch (action.type) {
-        case PIZZAS_FETCHED:
+        case actions.pizza.get.all.end.type:
             return {
                 ...state,
                 list: [

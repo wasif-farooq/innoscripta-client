@@ -4,7 +4,6 @@ import Main from './Components/Layout/Main';
 import PizzaGrid from './Components/PizzaGrid';
 import Checkout from './Components/Checkout';
 
-
 const App = () => {
   return (
     <Router>

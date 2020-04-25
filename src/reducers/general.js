@@ -1,9 +1,4 @@
-import {
-    SHOW_LOADING,
-    HIDE_LOADING,
-    SHOW_NOTIFICATION,
-    HIDE_NOTIFICATION
-} from '../actions';
+import actions from '../actions';
 
 const init = {
     loading: true,
@@ -14,24 +9,23 @@ const init = {
 }
 
 const general = (state = init, action) => {
-    console.log("state : ", state);
     switch (action.type) {
-        case SHOW_LOADING:
+        case actions.general.loading.show.type:
             return {
                 ...state,
                 loading: true
             }
-        case HIDE_LOADING:
+        case actions.general.loading.hide.type:
             return {
                 ...state,
                 loading: false
             }
-        case SHOW_NOTIFICATION:
+        case actions.general.notification.show.type:
             return {
                 ...state,
                 notification: {...action.payload}
             }
-        case HIDE_NOTIFICATION:
+        case actions.general.notification.hide.type:
             return {
                 ...state,
                 notification: {...init.notification}

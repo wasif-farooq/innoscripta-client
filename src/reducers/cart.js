@@ -1,11 +1,4 @@
-import {
-    CART_SHOW_LOADING,
-    CART_HIDE_LOADING,
-    CART_UPDATED,
-    SHOW_CART,
-    HIDE_CART,
-    CLEAR_CART
-} from '../actions';
+import actions from '../actions';
 const init = {
     loading: false,
     show: false,
@@ -19,27 +12,27 @@ const init = {
 
 const cart = (state = init, action) => {
     switch (action.type) {
-        case CART_SHOW_LOADING:
+        case actions.cart.loading.show.type:
             return {
                 ...state,
                 loading: true
             }
-        case CART_HIDE_LOADING:
+        case actions.cart.loading.hide.type:
             return {
                 ...state,
                 loading: false
             }
-        case SHOW_CART:
+        case actions.cart.show.type:
             return {
                 ...state,
                 show: true
             }
-        case HIDE_CART:
+        case actions.cart.hide.type:
             return {
                 ...state,
                 show: false
             }
-        case CART_UPDATED:
+        case actions.cart.updated.type:
             return {
                 ...state,
                 id: action.payload.id,
@@ -51,7 +44,7 @@ const cart = (state = init, action) => {
                     ...action.payload.items
                 ]
             }
-        case CLEAR_CART:
+        case actions.cart.clear.type:
             return init;
         default:
             return state;

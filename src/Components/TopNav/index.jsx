@@ -1,19 +1,16 @@
 import React from 'react';
 import {Button, Navbar, Nav, Container, Badge} from 'react-bootstrap';
-import { useDispatch, useSelector } from "react-redux";
-import { TOGGLE_CART } from "../../actions";
+import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import actions from '../../actions';
 
 const TopNav = () => {
 
     const cart = useSelector(state => state.cart);
-    const dispath = useDispatch();
     const { Brand, Toggle, Collapse } = Navbar;
 
     const toggle = e => {
-        dispath({
-            type: TOGGLE_CART
-        });
+        actions.cart.toggle.dispatch();
     }
 
     return (
