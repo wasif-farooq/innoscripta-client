@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { Container } from "react-bootstrap";
-import TopNav from '../TopNav';
-import Cart from '../Cart';
-import Notification from '../Notification';
+import TopNav from '../../components/top-nav';
+import Cart from '../../components/cart';
+import Notification from '../../components/notification';
 
 const Main = ({children}) => {
     return (

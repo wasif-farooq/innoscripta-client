@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { useSelector } from "react-redux";
 import { ListGroup, Badge } from "react-bootstrap/esm";
-import Price from '../Price'
+import Price from '../price'
 
 const SmartCart = () => {
 

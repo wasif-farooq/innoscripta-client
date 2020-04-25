@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Button, Form} from "react-bootstrap";
 
-const Quantity = (props) => {
+
+const QuantityField = (props) => {
 
     const [quantity, setQuantity] = useState(props.value);
     const {
@@ -36,6 +37,7 @@ const Quantity = (props) => {
         }
     }
 
+
     return (
         <Group clas>
             <span className="input-group-btn">
@@ -53,5 +55,5 @@ const Quantity = (props) => {
     )
 }
 
-Quantity.displayName = 'Quantity';
-export default Quantity;
+QuantityField.displayName = 'QuantityField';
+export default QuantityField;

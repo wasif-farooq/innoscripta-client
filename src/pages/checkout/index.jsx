@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import CheckoutForm from './Form';
-import SmartCart from '../SmartCart';
-import actions from "../../actions";
+import React, {Fragment} from 'react';
 import { useSelector } from "react-redux";
+import Main from '../../layout/main'
+import { Row, Col } from 'react-bootstrap';
+import CheckoutForm from "../../components/checkout-form";
+import SmartCart from '../../components/smart-cart'
+import actions from "../../actions";
 
 const Checkout = () => {
 
@@ -16,18 +17,8 @@ const Checkout = () => {
         });
     }
 
-    if (!cart.id || cart.items.length <= 0) {
-        return (
-            <Row className="my-5">
-                <Col className="d-flex justify-content-center">
-                    <h1>Please first select some pizza to do checkout</h1>
-                </Col>
-            </Row>
-        )
-    }
-
     return (
-        <Fragment>
+        <Main>
             <h3 className="my-3">Checkout</h3>
             <Row>
                 <Col md={8}>
@@ -37,9 +28,8 @@ const Checkout = () => {
                     <SmartCart />
                 </Col>
             </Row>
-        </Fragment>
+        </Main>
     )
-
 }
 
 Checkout.displayName = 'Checkout';

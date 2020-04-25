@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Item from './Item';
+import Item from '../cart-item';
 import { useSelector } from "react-redux";
 import {
     Modal,
@@ -9,7 +9,7 @@ import {
     ListGroup, Col, Row, Card
 } from "react-bootstrap";
 import actions from "../../actions";
-import Price from '../Price';
+import Price from '../price';
 
 const Cart = (props) => {
 

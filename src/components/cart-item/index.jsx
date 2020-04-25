@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ListGroup, Row, Col } from "react-bootstrap";
-import Quantity from './Quantity';
-import Price from '../Price';
+import QuantityField from '../quantity-field';
+import Price from '../price';
 
 const Item = (props) => {
 
@@ -22,7 +22,7 @@ const Item = (props) => {
                     <h6 className="my-0">{name}</h6>
                 </Col>
                 <Col sm={2}>
-                    <Quantity value={quantity} onChange={onUpdateQuantity} />
+                    <QuantityField value={quantity} onChange={onUpdateQuantity} />
                 </Col>
                 <Col sm={1}>
                     <span className="text-muted"> X </span>

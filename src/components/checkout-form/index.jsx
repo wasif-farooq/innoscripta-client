@@ -49,7 +49,7 @@ const CheckoutForm = (props) => {
                 setZipcode(value);
                 break;
             default:
-                // noting to do
+            // noting to do
         }
     }
 
@@ -102,9 +102,7 @@ const CheckoutForm = (props) => {
         setDisabled(true);
         if (validate()) {
 
-            alert(1);
             if (typeof props.onCheckout === 'function') {
-                alert(2);
 
                 const data = {
                     firstName,
