@@ -23,7 +23,8 @@
     "start": "react-app-env start --env-file='.env.local'",
     "build": "react-app-env build --env-file='.env.production'",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "gh:pages": "./node_modules/.bin/gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
