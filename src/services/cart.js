@@ -14,6 +14,15 @@ class CartService {
         return CartService.instance;
     }
 
+    get = async (id) => {
+        try {
+            const response = await http.get(`${this.uri}/${id}`);
+            return response.data;
+        } catch (error) {
+            throw (error.response || error.message);
+        }
+    }
+
     generate = async () => {
         try {
             const response = await http.post(`${this.uri}`);

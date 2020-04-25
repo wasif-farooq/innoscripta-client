@@ -5,6 +5,7 @@ export const TOGGLE_LOADING = 'TOGGLE_LOADING';
 export const FETCH_PIZZAS = 'FETCH_PIZZAS';
 export const PIZZAS_FETCHED = 'PIZZAS_FETCHED';
 
+export const GET_CART = 'GET_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const CART_TOGGLE_LOADING = 'CART_TOGGLE_LOADING';
 export const CART_SHOW_LOADING = 'CART_SHOW_LOADING';

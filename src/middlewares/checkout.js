@@ -15,11 +15,17 @@ const checkout = store => next => action => {
                 type: 'success',
                 message: 'Item Order placed successfully'
             }))
-            .catch(async () => actions.cart.loading.toggle.dispatch())
-            .then(() => actions.general.notification.toggle.dispatch({
-                type: 'warning',
-                message: 'There is some error in process please try again later'
-            }))
+            .then(async () => localStorage.clear())
+            .catch(async err => err)
+            .then(err => {
+                if (err) {
+                    actions.cart.loading.toggle.dispatch();
+                    actions.general.notification.toggle.dispatch({
+                        type: 'warning',
+                        message: 'There is some error in process please try again later'
+                    })
+                }
+            });
     }
 
     return next(action);

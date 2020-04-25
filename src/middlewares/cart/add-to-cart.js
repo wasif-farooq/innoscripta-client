@@ -3,7 +3,12 @@ import service from '../../services/cart';
 import map from './map';
 
 const getCart = async (state) => {
-    return state.cart.id > 0 ? state.cart.id: await service.generate();
+    if (state.cart.id > 0) {
+        return state.cart.id;
+    }
+    const id = await service.generate();
+    localStorage.setItem('cart', id);
+    return id;
 }
 
 const addToCart = store => next => action => {

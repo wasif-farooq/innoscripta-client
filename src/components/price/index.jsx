@@ -10,12 +10,12 @@ const Price = (props) => {
 
     if (unit === 'usd') {
         return (
-            <sapn {...rest}>${(value * 1.08).toFixed(2)}</sapn>
+            <span {...rest}>${(value * 1.08).toFixed(2)}</span>
         )
     }
 
     return (
-        <sapn {...rest}>€{(value * 1).toFixed(2)}</sapn>
+        <span {...rest}>€{(value * 1).toFixed(2)}</span>
     )
 }
 

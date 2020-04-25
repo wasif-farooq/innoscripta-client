@@ -12,11 +12,12 @@ import {
     CLEAR_CART,
     SHOW_CART,
     HIDE_CART,
-    DO_CHECKOUT
+    DO_CHECKOUT, GET_CART
 } from "../constants";
 
 export default {
     cart: {
+        get: create(GET_CART),
         item: {
             add: create(ADD_TO_CART),
             remove: create(CART_REMOVE_ITEM),
