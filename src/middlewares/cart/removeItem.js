@@ -1,21 +1,24 @@
 import actions from "../../actions";
-import axios from "axios";
-import config from "../../config";
+import service from '../../services/cart';
 import map from './map';
 
 const remoteItem = store => next => action => {
 
     const state = store.getState();
+    const { type, payload } = action;
 
-    if (action.type === actions.cart.item.remove.type) {
+    if (type === actions.cart.item.remove.type) {
         actions.cart.loading.toggle.dispatch();
 
-        axios.delete(config.api.url + '/cart/' + state.cart.id + '/items/' + action.payload.id, )
-            .then(response => {
-                response.data.items = map(state, response.data.items);
-                actions.cart.updated.dispatch(response.data);
-                actions.cart.loading.toggle.dispatch();
-            }).catch(console.log)
+        service.removeItem(state.cart.id, payload.id)
+            .then(async data => map(state, data))
+            .then(async data => actions.cart.updated.dispatch(data))
+            .then(async () => actions.cart.loading.toggle.dispatch())
+            .catch(async () => actions.cart.loading.toggle.dispatch())
+            .then(() => actions.general.notification.toggle.dispatch({
+                type: 'warning',
+                message: 'There is some error in process please try again later'
+            }));
     }
 
     return next(action);

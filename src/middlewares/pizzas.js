@@ -1,15 +1,10 @@
 import actions from '../actions';
-import config from '../config';
-import axios from 'axios';
+import service from '../services/pizza';
 
 const pizzas = store => next => action => {
 
     if (action.type === actions.pizza.get.all.start.type) {
-
-        axios.get(config.api.url + '/pizzas')
-            .then(response => {
-                actions.pizza.get.all.end.dispatch(response.data)
-            })
+        service.getPizzas().then(actions.pizza.get.all.end.dispatch);
     }
 
     return next(action);

@@ -1,5 +1,5 @@
-const map = (state, items) => {
-    return items.map((item) => {
+const map = async (state, data) => {
+    data.items = data.items.map((item) => {
         state.pizzas.list.some((pizza) => {
             if (pizza.id === item.pizza_id) {
                 item.name = pizza.name
@@ -8,6 +8,7 @@ const map = (state, items) => {
         })
         return item;
     })
+    return data;
 }
 
 export default map;

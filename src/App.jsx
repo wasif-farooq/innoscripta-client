@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Main from './Components/Layout/Main';
-import PizzaGrid from './Components/PizzaGrid';
-import Checkout from './Components/Checkout';
+import Main from './components/Layout/Main';
+import PizzaGrid from './components/PizzaGrid';
+import Checkout from './components/Checkout';
 
 const App = () => {
   return (
