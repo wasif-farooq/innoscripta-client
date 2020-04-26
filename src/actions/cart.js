@@ -17,7 +17,13 @@ import {
 
 export default {
     cart: {
+
+
+
         get: create(GET_CART),
+
+
+        __tests__/middlewares/cart/add-to-cart.test.js
         item: {
             add: create(ADD_TO_CART),
             remove: create(CART_REMOVE_ITEM),

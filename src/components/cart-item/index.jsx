@@ -31,7 +31,7 @@ Item.propTypes = {
     name: PropTypes.string,
     quantity: PropTypes.number,
     price: PropTypes.number,
-    onRemove: PropTypes.func,
+    onRemove: PropTypes.func.isRequired,
     onUpdateQuantity: PropTypes.func
 }
 
