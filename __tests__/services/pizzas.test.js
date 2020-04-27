@@ -7,9 +7,7 @@ describe('Pizza Service', () => {
 
     it('should gernate return id', async () => {
         http.get.mockResolvedValue({
-            data: {
-                id: 1
-            }
+            data: 1
         });
         const data = await service.getPizzas();
         expect(data).toEqual(1);
