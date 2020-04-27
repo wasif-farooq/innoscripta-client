@@ -71,6 +71,4 @@ class CartService {
 }
 
 const instance = new CartService(config);
-Object.freeze(instance);
-
 export default instance;

@@ -1,12 +1,10 @@
-import toggle from './toggle';
+import toggle from '../../../src/middlewares/cart/toggle'
+import actions from '../../../src/actions';
 
-import {
-    HIDE_CART,
-    SHOW_CART,
-    TOGGLE_CART
-} from "../../actions";
+describe('Cart Loading MiddleWare', () => {
 
-describe('Genral MiddleWare', () => {
+    actions.cart.hide.dispatch = jest.fn();
+    actions.cart.show.dispatch = jest.fn();
 
     const state = {
         cart: {
@@ -21,39 +19,29 @@ describe('Genral MiddleWare', () => {
     const next = jest.fn();
     const middleware = toggle(store)(next);
 
-    it('should call store dispatch', () => {
+    it('should call hide  dispatch', () => {
 
         store.getState.mockReturnValueOnce({...state});
-
-        const action = {
-            type: TOGGLE_CART
-        };
-
-        middleware(action);
-
-        expect(store.getState).toBeCalled();
-        expect(next).toBeCalled();
-        expect(store.dispatch).toBeCalledWith({type: HIDE_CART});
-    });
-
-    it('should call store dispatch', () => {
-
-        store.getState.mockReturnValueOnce({
-            ...state,
-            cart: {
-                show: false
-            }
+        middleware({
+            type: actions.cart.toggle.type
         });
 
-        const action = {
-            type: TOGGLE_CART
-        };
+        expect(store.getState).toBeCalled();
+        expect(next).toBeCalled();
+        expect(actions.cart.hide.dispatch).toBeCalled();
+    });
 
-        middleware(action);
+    it('should call show dispatch', () => {
+
+        state.cart.show = false
+        store.getState.mockReturnValueOnce({...state});
+        middleware({
+            type: actions.cart.toggle.type
+        });
 
         expect(store.getState).toBeCalled();
         expect(next).toBeCalled();
-        expect(store.dispatch).toBeCalledWith({type: SHOW_CART});
+        expect(actions.cart.show.dispatch).toBeCalled();
     });
 
 });

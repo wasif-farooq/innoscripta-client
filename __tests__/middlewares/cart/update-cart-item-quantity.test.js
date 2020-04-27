@@ -1,12 +1,13 @@
-import checkout from '../../src/middlewares/checkout';
-import actions from '../../src/actions';
-import service from "../../src/services/cart";
+import updateCartItemQty from '../../../src/middlewares/cart/update-cart-item-quantity';
+import actions from '../../../src/actions';
+import service from "../../../src/services/cart";
 
-describe('Add To Cart Middleware', () => {
+describe('Update Cart Item Quantity Middleware', () => {
 
-    actions.general.loading.toggle.dispatch = jest.fn();
+    actions.cart.loading.toggle.dispatch = jest.fn();
     actions.cart.updated.dispatch = jest.fn();
-    service.checkout = jest.fn();
+    actions.general.notification.toggle.dispatch = jest .fn();
+    service.updateQuantity = jest.fn();
 
     const state = {
         cart: {
@@ -33,7 +34,7 @@ describe('Add To Cart Middleware', () => {
         dispatch: jest.fn()
     };;
     const next = jest.fn();
-    const middleware = checkout(store)(next);
+    const middleware = updateCartItemQty(store)(next);
 
     it('should call store dispatch', () => {
 
@@ -53,16 +54,19 @@ describe('Add To Cart Middleware', () => {
             total: 1,
             sub_total: 1,
             discount: 1,
-            completed: true,
             shipping_cost: 1,
             items: items
         }
 
         store.getState.mockReturnValueOnce({...state});
-        service.checkout.mockResolvedValue(response)
+        service.updateQuantity.mockResolvedValue(response)
 
         const action = {
-            type: actions.cart.checkout.type,
+            type: actions.cart.item.quantity.update.type,
+            payload: {
+                id: 1,
+                quantity: 2
+            }
         };
 
         middleware(action);
@@ -71,10 +75,11 @@ describe('Add To Cart Middleware', () => {
 
         setTimeout(() => {
 
-            expect(actions.general.loading.toggle.dispatch).toBeCalled();
-            expect(service.checkout).toBeCalled();
+            expect(actions.cart.loading.toggle.dispatch).toBeCalled();
+            expect(service.updateQuantity).toBeCalled();
             expect(actions.cart.updated.dispatch).toBeCalled();
-            expect(actions.general.loading.toggle.dispatch).toBeCalled();
+            expect(actions.cart.loading.toggle.dispatch).toBeCalled();
+            expect(actions.general.notification.toggle.dispatch).toBeCalled();
         })
 
     });

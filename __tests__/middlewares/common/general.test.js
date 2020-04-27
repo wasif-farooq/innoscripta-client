@@ -1,11 +1,10 @@
 import general from '../../../src/middlewares/common/general'
-import {
-    HIDE_LOADING,
-    SHOW_LOADING,
-    TOGGLE_LOADING
-} from '../../../src/constants';
+import actions from '../../../src/actions';
 
 describe('Genral MiddleWare', () => {
+
+    actions.general.loading.hide.dispatch = jest.fn();
+    actions.general.loading.show.dispatch = jest.fn();
 
     const state = {
         general: {
@@ -20,39 +19,29 @@ describe('Genral MiddleWare', () => {
     const next = jest.fn();
     const middleware = general(store)(next);
 
-    it('should call store dispatch', () => {
+    it('should call hide  dispatch', () => {
 
         store.getState.mockReturnValueOnce({...state});
-
-        const action = {
-            type: TOGGLE_LOADING
-        };
-
-        middleware(action);
-
-        expect(store.getState).toBeCalled();
-        expect(next).toBeCalled();
-        expect(store.dispatch).toBeCalledWith({type: HIDE_LOADING});
-    });
-
-    it('should call store dispatch', () => {
-
-        store.getState.mockReturnValueOnce({
-            ...state,
-            general: {
-                loading: false
-            }
+        middleware({
+            type: actions.general.loading.toggle.type
         });
 
-        const action = {
-            type: TOGGLE_LOADING
-        };
+        expect(store.getState).toBeCalled();
+        expect(next).toBeCalled();
+        expect(actions.general.loading.hide.dispatch).toBeCalled();
+    });
 
-        middleware(action);
+    it('should call show dispatch', () => {
+
+        state.general.loading = false
+        store.getState.mockReturnValueOnce({...state});
+        middleware({
+            type: actions.general.loading.toggle.type
+        });
 
         expect(store.getState).toBeCalled();
         expect(next).toBeCalled();
-        expect(store.dispatch).toBeCalledWith({type: SHOW_LOADING});
+        expect(actions.general.loading.show.dispatch).toBeCalled();
     });
 
 });

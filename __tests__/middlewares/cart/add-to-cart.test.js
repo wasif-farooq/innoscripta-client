@@ -1,33 +1,20 @@
-import addToCart from './addToCart';
-import {
-    ADD_TO_CART,
-    CART_TOGGLE_LOADING,
-    CART_UPDATED,
-    HIDE_CART,
-    TOGGLE_CART,
-    TOGGLE_NOTIFICATION
-} from "../../actions";
-import config from "../../config";
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import addToCart from '../../../src/middlewares/cart/add-to-cart';
+import actions from '../../../src/actions';
+import service from "../../../src/services/cart";
 
 describe('Add To Cart Middleware', () => {
 
+    actions.cart.loading.toggle.dispatch = jest.fn();
+    actions.cart.updated.dispatch = jest.fn();
+    actions.general.notification.toggle.dispatch = jest .fn();
+    service.generate = jest.fn();
+    service.addToCart = jest.fn();
+
     const state = {
         cart: {
-            cart: ''
+            id: ''
         },
-        pizzas: {
-            list: [{
-                id: 1,
-                name: 'pizza1'
-            }]
-        }
     };
-
-    const map = jest.fn();
-
-    const mockAxios = new MockAdapter(axios);
 
     const store = {
         getState: jest.fn(),
@@ -43,11 +30,11 @@ describe('Add To Cart Middleware', () => {
             pizza_id: 1,
             name: 'pizza1',
             quantity: 1,
-            cart_id: 1
+            cart_id: 1,
+            pizza: {
+                name: 'pizza1'
+            }
         }];
-
-        store.getState.mockReturnValueOnce({...state});
-        map.mockReturnValueOnce(items)
 
         const response = {
             id: 1,
@@ -58,43 +45,25 @@ describe('Add To Cart Middleware', () => {
             items: items
         }
 
+        store.getState.mockReturnValueOnce({...state});
+        service.generate.mockResolvedValue(1);
+        service.addToCart.mockResolvedValue(response)
+
         const action = {
-            type: ADD_TO_CART
+            type: actions.cart.item.add.type
         };
-
-        const a = mockAxios.onPost(config.api.url + '/cart').reply(200, {
-            id: 1
-        });
-
-        mockAxios.onPost(config.api.url + '/cart/1/items').reply(200, response)
 
         middleware(action);
         expect(store.getState).toBeCalled();
         expect(next).toBeCalled();
         setTimeout(() => {
 
-            expect(store.dispatch).toHaveBeenCalledWith({
-                type: CART_TOGGLE_LOADING
-            });
-
-            expect(store.dispatch).toBeCalledWith({
-                type: CART_UPDATED,
-                payload: response
-            });
-
-            expect(store.dispatch).toHaveBeenCalledWith({
-                type: CART_TOGGLE_LOADING,
-            });
-
-            expect(store.dispatch).toHaveBeenCalledWith({
-                type: TOGGLE_NOTIFICATION,
-                payload: {
-                    type: 'success',
-                    message: 'Item Added Succesfully'
-                }
-            });
-
-            expect(store.dispatch).toHaveBeenCalledTimes(4);
+            expect(actions.cart.loading.toggle.dispatch).toBeCalled();
+            expect(service.generate).toBeCalled();
+            expect(service.addToCart).toBeCalled();
+            expect(actions.cart.updated.dispatch).toBeCalled();
+            expect(actions.cart.loading.toggle.dispatch).toBeCalled();
+            expect(actions.general.notification.toggle.dispatch).toBeCalled();
         })
 
     });

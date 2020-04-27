@@ -1,19 +1,16 @@
-import notification from './notification';
+import notification from '../../../src/middlewares/common/notification';
+import actions from '../../../src/actions';
 
-import {
-    HIDE_NOTIFICATION,
-    SHOW_NOTIFICATION,
-    TOGGLE_NOTIFICATION
-} from "../../actions";
+describe('Notification MiddleWare', () => {
 
-describe('Genral MiddleWare', () => {
+    actions.general.notification.hide.dispatch = jest.fn();
+    actions.general.notification.show.dispatch = jest.fn();
 
     const state = {
         general: {
-            loading: true,
             notification: {
-                type: '',
-                message: ''
+                type: 'success',
+                message: 'success'
             }
         }
     };
@@ -25,43 +22,32 @@ describe('Genral MiddleWare', () => {
     const next = jest.fn();
     const middleware = notification(store)(next);
 
-    it('should call store dispatch', () => {
+    it('should call hide  dispatch', () => {
 
         store.getState.mockReturnValueOnce({...state});
-
-        const action = {
-            type: TOGGLE_NOTIFICATION
-        };
-
-        middleware(action);
-
-        expect(store.getState).toBeCalled();
-        expect(next).toBeCalled();
-        expect(store.dispatch).toBeCalledWith({type: SHOW_NOTIFICATION});
-    });
-
-    it('should call store dispatch', () => {
-
-        store.getState.mockReturnValueOnce({
-            ...state,
-            general: {
-                loading: false,
-                notification: {
-                    type: 'success',
-                    message: 'success'
-                }
-            }
+        middleware({
+            type: actions.general.notification.toggle.type
         });
 
-        const action = {
-            type: TOGGLE_NOTIFICATION
-        };
+        expect(store.getState).toBeCalled();
+        expect(next).toBeCalled();
+        expect(actions.general.notification.hide.dispatch).toBeCalled();
+    });
 
-        middleware(action);
+    it('should call show dispatch', () => {
+
+        state.general.notification = {
+            type: '',
+            message: ''
+        };
+        store.getState.mockReturnValueOnce({...state});
+        middleware({
+            type: actions.general.notification.toggle.type
+        });
 
         expect(store.getState).toBeCalled();
         expect(next).toBeCalled();
-        expect(store.dispatch).toBeCalledWith({type: HIDE_NOTIFICATION});
+        expect(actions.general.notification.show.dispatch).toBeCalled();
     });
 
 });

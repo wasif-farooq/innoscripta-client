@@ -1,12 +1,10 @@
-import cartLoading from './loading';
+import loading from '../../../src/middlewares/cart/loading'
+import actions from '../../../src/actions';
 
-import {
-    CART_TOGGLE_LOADING,
-    CART_SHOW_LOADING,
-    CART_HIDE_LOADING
-} from "../../actions";
+describe('Cart Loading MiddleWare', () => {
 
-describe('Genral MiddleWare', () => {
+    actions.cart.loading.hide.dispatch = jest.fn();
+    actions.cart.loading.show.dispatch = jest.fn();
 
     const state = {
         cart: {
@@ -19,41 +17,31 @@ describe('Genral MiddleWare', () => {
         dispatch: jest.fn()
     };;
     const next = jest.fn();
-    const middleware = cartLoading(store)(next);
+    const middleware = loading(store)(next);
 
-    it('should call store dispatch', () => {
+    it('should call hide  dispatch', () => {
 
         store.getState.mockReturnValueOnce({...state});
-
-        const action = {
-            type: CART_TOGGLE_LOADING
-        };
-
-        middleware(action);
-
-        expect(store.getState).toBeCalled();
-        expect(next).toBeCalled();
-        expect(store.dispatch).toBeCalledWith({type: CART_HIDE_LOADING});
-    });
-
-    it('should call store dispatch', () => {
-
-        store.getState.mockReturnValueOnce({
-            ...state,
-            cart: {
-                loading: false
-            }
+        middleware({
+            type: actions.cart.loading.toggle.type
         });
 
-        const action = {
-            type: CART_TOGGLE_LOADING
-        };
+        expect(store.getState).toBeCalled();
+        expect(next).toBeCalled();
+        expect(actions.cart.loading.hide.dispatch).toBeCalled();
+    });
 
-        middleware(action);
+    it('should call show dispatch', () => {
+
+        state.cart.loading = false
+        store.getState.mockReturnValueOnce({...state});
+        middleware({
+            type: actions.cart.loading.toggle.type
+        });
 
         expect(store.getState).toBeCalled();
         expect(next).toBeCalled();
-        expect(store.dispatch).toBeCalledWith({type: CART_SHOW_LOADING});
+        expect(actions.cart.loading.show.dispatch).toBeCalled();
     });
 
 });

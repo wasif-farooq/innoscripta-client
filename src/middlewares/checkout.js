@@ -13,10 +13,9 @@ const checkout = store => next => action => {
         service.checkout(state.cart.id)
             .then(async data => map(state, data))
             .then(async data => actions.cart.updated.dispatch(data))
-            .then(async () => actions.cart.loading.toggle.dispatch())
+            .then(async () => actions.general.loading.toggle.dispatch())
             .catch(async err => err)
             .then(err => {
-                console.log(err)
                 if (err) {
                     actions.cart.loading.toggle.dispatch();
                     actions.general.notification.toggle.dispatch({

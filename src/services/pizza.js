@@ -25,6 +25,4 @@ class PizzaService {
 }
 
 const instance = new PizzaService(config);
-Object.freeze(instance);
-
 export default instance;
