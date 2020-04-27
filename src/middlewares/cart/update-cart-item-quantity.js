@@ -12,7 +12,7 @@ const updateCartItemQty = store => next => action => {
         const { id, ...data } = payload;
         service.updateQuantity(state.cart.id, id, data)
             .then(async data => map(state, data))
-            .then(async () => actions.cart.updated.dispatch(data))
+            .then(async data => actions.cart.updated.dispatch(data))
             .then(async () => actions.cart.loading.toggle.dispatch())
             .catch(async err => err)
             .then(err => {

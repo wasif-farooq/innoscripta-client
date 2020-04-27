@@ -44,7 +44,7 @@ class CartService {
 
     updateQuantity = async (id, item, data) => {
         try {
-            const response = await http.post(`${this.uri}/${id}/items/${item}`, data);
+            const response = await http.patch(`${this.uri}/${id}/items/${item}`, data);
             return response.data;
         } catch (error) {
             throw (error.response || error.message);

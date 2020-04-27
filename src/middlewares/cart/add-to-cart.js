@@ -11,7 +11,7 @@ const getCart = async (state) => {
     return id;
 }
 
-const addToCart = store => next => action => {
+const addToCart = store => next => async action => {
 
     const state = store.getState();
     const { type, payload } = action;

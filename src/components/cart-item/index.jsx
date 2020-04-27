@@ -18,7 +18,7 @@ const Item = (props) => {
     return (
         <tr>
             <td>{name}</td>
-            <td><QuantityField value={quantity} onChange={onUpdateQuantity} /></td>
+            <td><QuantityField value={quantity} onUpdateQuantity={onUpdateQuantity} /></td>
             <td><Price className="text-muted" value={price} /></td>
             <td><Price className="text-muted" value={quantity * price} /></td>
             <td className="text-center"><Button size="sm" variant="danger" onClick={onRemove(id)}>x</Button></td>

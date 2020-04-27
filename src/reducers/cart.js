@@ -33,6 +33,7 @@ const cart = (state = init, action) => {
                 show: false
             }
         case actions.cart.updated.type:
+            console.log("action.payload : ", action.payload)
             return {
                 ...state,
                 id: action.payload.id,

@@ -12,29 +12,27 @@ const QuantityField = (props) => {
     } = Form
 
     const {
-        onChange
+        onUpdateQuantity
     } = props;
 
     const emit = value => {
         setQuantity(value)
-        if (typeof onChange === 'function') {
-            onChange(value)
+        if (typeof onUpdateQuantity === 'function') {
+            onUpdateQuantity(value)
         }
     }
 
-    const onUpdateQuantity = e => {
-        if (e.target.value > 0) {
-            emit(e.target.value);
-        }
+    const onChange = e => {
+        emit(e.target.value * 1);
     }
 
     const increment = () => {
-        emit(quantity + 1);
+        emit(quantity * 1 + 1);
     }
 
     const decrement = () => {
         if (quantity > 1) {
-            emit(quantity - 1);
+            emit(quantity * 1 - 1);
         }
     }
 
@@ -44,7 +42,7 @@ const QuantityField = (props) => {
             <InputGroup.Prepend>
                 <Button variant="outline-secondary" onClick={decrement}>-</Button>
             </InputGroup.Prepend>
-            <FormControl aria-describedby="basic-addon1" value={quantity} onChange={onUpdateQuantity} />
+            <FormControl aria-describedby="basic-addon1" value={quantity} onChange={onChange} />
             <InputGroup.Append>
                 <Button variant="outline-secondary" onClick={increment}>+</Button>
             </InputGroup.Append>
