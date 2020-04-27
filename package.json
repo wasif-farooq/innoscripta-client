@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-app-env start --env-file='.env.local'",
-    "build": "react-app-env build --env-file='.env.production'",
+    "build": "react-app-env build --env-file='.env'",
     "test": "jest --config jest.config.json",
     "eject": "react-scripts eject",
     "gh:pages": "./node_modules/.bin/gh-pages -d build"
