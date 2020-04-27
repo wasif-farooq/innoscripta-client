@@ -2,7 +2,7 @@ import checkout from '../../src/middlewares/checkout';
 import actions from '../../src/actions';
 import service from "../../src/services/cart";
 
-describe('Add To Cart Middleware', () => {
+describe('Checkout Middleware', () => {
 
     actions.general.loading.toggle.dispatch = jest.fn();
     actions.cart.updated.dispatch = jest.fn();
